@@ -1,9 +1,9 @@
 # _**SIMPLE-BLOG**_
 Desarrollo backend para un blog sencillo donde podras:
 
-<p>**1. Crear tu cuenta**</p>
-<p>**2. Iniciar sesión**</p>
-<p>**3. Compartir publicaciones**</p>
+<p><b>1. Crear tu cuenta</b></p>
+<p><b>2. Iniciar sesión</b></p>
+<p><b>3. Compartir publicaciones</b></p>
 
 ### Equipo
 - _Diego Ruiz_
