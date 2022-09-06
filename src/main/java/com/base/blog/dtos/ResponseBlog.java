@@ -3,25 +3,25 @@ package com.base.blog.dtos;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class RespuestaGenerica<T> implements Serializable {
+public class ResponseBlog<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Boolean status;
 	private String message;
 	private transient T data;
 
-	public RespuestaGenerica() {
+	public ResponseBlog() {
 		super();
 	}
 
-	public RespuestaGenerica(Boolean status, String message) {
+	public ResponseBlog(Boolean status, String message) {
 		super();
 		this.status = status;
 		this.message = message;
 	}
 
-	public RespuestaGenerica(Boolean status, String message, T data) {
+	public ResponseBlog(Boolean status, String message, T data) {
 		super();
 		this.status = status;
 		this.message = message;
