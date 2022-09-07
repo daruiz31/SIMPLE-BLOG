@@ -1,8 +1,9 @@
-package com.base.blog.services;
+package com.base.blog.services.implementations;
 
 import org.springframework.stereotype.Service;
 
 import com.base.blog.dtos.ResponseBlog;
+import com.base.blog.services.ILoginService;
 
 @Service
 public class LoginImpl implements ILoginService {
