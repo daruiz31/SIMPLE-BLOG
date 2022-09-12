@@ -3,8 +3,9 @@ package com.base.blog.dtos;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.Nullable;
 
 import com.base.blog.entities.Rol;
 
@@ -14,18 +15,30 @@ public class RolDTO implements Serializable {
 
 	@NotNull
 	private Long idRol;
-	@NotBlank
+	@Nullable
 	private String role;
-	@NotBlank
+	@Nullable
 	private String description;
-	@NotNull
+	@Nullable
 	private Integer enabled;
 
 	public RolDTO() {
 		super();
 	}
 
-	public RolDTO(@NotNull Long idRol, @NotBlank String role, @NotBlank String description, @NotNull Integer enabled) {
+	public RolDTO(@NotNull Long idRol) {
+		super();
+		this.idRol = idRol;
+	}
+
+	public RolDTO(String role, String description, Integer enabled) {
+		super();
+		this.role = role;
+		this.description = description;
+		this.enabled = enabled;
+	}
+
+	public RolDTO(@NotNull Long idRol, @Nullable String role, @Nullable String description, @Nullable Integer enabled) {
 		super();
 		this.idRol = idRol;
 		this.role = role;

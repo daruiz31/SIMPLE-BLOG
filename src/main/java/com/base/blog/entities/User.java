@@ -27,7 +27,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotNull
+	@Nullable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idusers")
 	private Long idUser;
@@ -43,8 +43,8 @@ public class User implements Serializable {
 	@NotNull
 	private Integer enabled;
 
-	@Nullable
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@NotNull
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idRol")
 	private Rol idRol;
 
@@ -52,19 +52,20 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(@NotNull Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
-			@NotBlank String password, @NotNull Integer enabled) {
+	public User(@NotBlank String name, @NotBlank String surname, @NotBlank String email, @NotBlank String password,
+			@NotNull Integer enabled, Rol idRol) {
 		super();
-		this.idUser = idUser;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
 		this.enabled = enabled;
+		this.idRol = idRol;
 	}
-
-	public User(@NotNull Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
-			@NotBlank String password, @NotNull Integer enabled, Rol idRol) {
+	
+	
+	public User(@Nullable Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
+			@NotBlank String password, @NotNull Integer enabled, @NotNull Rol idRol) {
 		super();
 		this.idUser = idUser;
 		this.name = name;

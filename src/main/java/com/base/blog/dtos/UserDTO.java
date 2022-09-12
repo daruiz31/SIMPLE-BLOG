@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.Nullable;
 
@@ -14,7 +13,7 @@ public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
+	@Nullable
 	private Long idUser;
 	@NotBlank
 	private String name;
@@ -24,7 +23,7 @@ public class UserDTO implements Serializable {
 	private String email;
 	@NotBlank
 	private String password;
-	@NotNull
+	@Nullable
 	private Integer enabled;
 	@Nullable
 	private RolDTO idRol;
@@ -33,8 +32,16 @@ public class UserDTO implements Serializable {
 		super();
 	}
 
-	public UserDTO(@NotNull Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
-			@NotBlank String password, @NotNull Integer enabled) {
+	public UserDTO(@NotBlank String name, @NotBlank String surname, @NotBlank String email, @NotBlank String password) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+	}
+
+	public UserDTO(@Nullable Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
+			@NotBlank String password, @Nullable Integer enabled) {
 		super();
 		this.idUser = idUser;
 		this.name = name;
@@ -44,8 +51,8 @@ public class UserDTO implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public UserDTO(@NotNull Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
-			@NotBlank String password, @NotNull Integer enabled, RolDTO idRol) {
+	public UserDTO(@Nullable Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
+			@NotBlank String password, @Nullable Integer enabled, RolDTO idRol) {
 		super();
 		this.idUser = idUser;
 		this.name = name;

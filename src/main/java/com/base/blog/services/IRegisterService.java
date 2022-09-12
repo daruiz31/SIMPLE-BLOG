@@ -4,7 +4,8 @@ import com.base.blog.dtos.ResponseBlog;
 import com.base.blog.dtos.UserDTO;
 import com.base.blog.exceptions.SimpleBlogException;
 
-public interface ILoginService {
+public interface IRegisterService {
+	
+	ResponseBlog<UserDTO> createUser(UserDTO user) throws SimpleBlogException;
 
-	ResponseBlog<UserDTO> login(String email, String password) throws SimpleBlogException;
 }
