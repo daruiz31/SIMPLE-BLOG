@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +24,25 @@ public class RegisterController {
 	@Autowired
 	private IRegisterService iRegisterService;
 
+	/**
+	 * Register user with information of the UserDTO object
+	 * @param user Object
+	 * UserDTO - Required registration information for user
+	 * @return ResponseBlog<UserDTO>
+	 * Generic ResponseBlog response with UserDTO saved register
+	 * @throws SimpleBlogException
+	 */
 	@PostMapping("/user")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseBlog<UserDTO> createUser(@RequestBody @NotNull @Valid UserDTO user) throws SimpleBlogException {
-		return iRegisterService.createUser(user);
+	public ResponseEntity<ResponseBlog<UserDTO>> createUser(@RequestBody @NotNull @Valid UserDTO user)
+			throws SimpleBlogException {
+		try {
+			ResponseBlog<UserDTO> response = iRegisterService.createUser(user);
+			return Boolean.FALSE.equals(response.getStatus()) ? ResponseEntity.badRequest().body(response)
+					: ResponseEntity.accepted().body(response);
+		} catch (SimpleBlogException e) {
+			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));
+		}
 	}
 
 }
