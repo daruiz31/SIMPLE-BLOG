@@ -1,4 +1,4 @@
-package com.base.blog.services;
+package com.base.blog.services.implementations;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -8,18 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.base.blog.dtos.ResponseBlog;
+import com.base.blog.services.ITestService;
 
 @SpringBootTest
-public class TestServiceTest {
+class TestImplTest {
 
 	@Autowired
-	private ITestService iTestService;
+	private ITestService iTestService;	
 
 	@Test
 	@Tag("ITestService.test")
 	void contextLoads() {
 		ResponseBlog<String> testService = iTestService.test();
-		assertTrue(testService.getStatus(), "Function test for ITestService - OK");
+		assertTrue(testService.getStatus(), "Function test for TestImpl - FAILED");
 	}
 
 }
