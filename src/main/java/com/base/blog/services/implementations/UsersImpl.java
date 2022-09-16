@@ -40,9 +40,8 @@ public class UsersImpl implements IUsersService {
 	@Override
 	public ResponseBlog<UserDTO> findByEmail(String email) throws SimpleBlogException {
 		try {
-			User user = iUsersRepository.findByEmail(email)
-					.orElseThrow(() -> new NotFoundException("ERROR-USER-FIND-BY-EMAIL"));
-			return new ResponseBlog<>(true, "Found user", new UserDTO(user));
+			return new ResponseBlog<>(true, "Found user", new UserDTO(iUsersRepository.findByEmail(email)
+					.orElseThrow(() -> new NotFoundException("ERROR-USER-FIND-BY-EMAIL"))));
 		} catch (Exception e) {
 			String message = "Error searching user by mail {" + email + "} : " + e.getMessage();
 			LOG.error(message);
@@ -53,9 +52,9 @@ public class UsersImpl implements IUsersService {
 	@Override
 	public ResponseBlog<UserDTO> findByEmailAndPassword(String email, String password) throws SimpleBlogException {
 		try {
-			User user = iUsersRepository.findByEmailAndPassword(email, password)
-					.orElseThrow(() -> new NotFoundException("ERROR-USER-FIND-BY-EMAIL-PASSWORD"));
-			return new ResponseBlog<>(true, "Found user", new UserDTO(user));
+			return new ResponseBlog<>(true, "Found user",
+					new UserDTO(iUsersRepository.findByEmailAndPassword(email, password)
+							.orElseThrow(() -> new NotFoundException("ERROR-USER-FIND-BY-EMAIL-PASSWORD"))));
 		} catch (Exception e) {
 			String message = "Error searching user by mail {" + email + "} and password : " + e.getMessage();
 			LOG.error(message);
