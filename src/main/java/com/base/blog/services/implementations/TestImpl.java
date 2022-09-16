@@ -14,7 +14,7 @@ public class TestImpl implements ITestService {
 
 	@Override
 	public ResponseBlog<String> test() {
-		LOG.info("TEST OK");
+		LOG.info("SIMPLE TEST OK");
 		return new ResponseBlog<>(true, "TEST", "OK");
 	}
 
