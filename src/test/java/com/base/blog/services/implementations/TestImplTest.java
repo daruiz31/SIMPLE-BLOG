@@ -20,7 +20,7 @@ class TestImplTest {
 	@Tag("ITestService.test")
 	void contextLoads() {
 		ResponseBlog<String> testService = iTestService.test();
-		assertTrue(testService.getStatus(), "Function test for TestImpl - FAILED");
+		assertTrue(testService.getStateProcess(), "Function test for TestImpl - FAILED");
 	}
 
 }

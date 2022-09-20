@@ -38,7 +38,7 @@ public class RegisterController {
 			throws SimpleBlogException {
 		try {
 			ResponseBlog<UserDTO> response = iRegisterService.createUser(user);
-			return Boolean.FALSE.equals(response.getStatus()) ? ResponseEntity.badRequest().body(response)
+			return Boolean.FALSE.equals(response.getStateProcess()) ? ResponseEntity.badRequest().body(response)
 					: ResponseEntity.accepted().body(response);
 		} catch (SimpleBlogException e) {
 			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));

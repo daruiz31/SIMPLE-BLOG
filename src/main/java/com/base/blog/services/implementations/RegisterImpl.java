@@ -45,8 +45,8 @@ public class RegisterImpl implements IRegisterService {
 		// Assign role to user
 		if (Boolean.TRUE.equals(user.getIdRol() == null)) {
 			ResponseBlog<RolDTO> role = iRolesService.findByRole(defaultRol);
-			if (Boolean.FALSE.equals(role.getStatus())) {
-				return new ResponseBlog<>(false, role.getMessage());
+			if (Boolean.FALSE.equals(role.getStateProcess())) {
+				return new ResponseBlog<>(false, role.getResponseMessage());
 			}
 			user.setIdRol(role.getData());
 		}

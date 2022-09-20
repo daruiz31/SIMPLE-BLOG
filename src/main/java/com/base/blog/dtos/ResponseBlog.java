@@ -7,8 +7,8 @@ public class ResponseBlog<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Boolean status;
-	private String message;
+	private Boolean stateProcess;
+	private String responseMessage;
 	private transient T data;
 
 	public ResponseBlog() {
@@ -17,31 +17,31 @@ public class ResponseBlog<T> implements Serializable {
 
 	public ResponseBlog(Boolean status, String message) {
 		super();
-		this.status = status;
-		this.message = message;
+		this.stateProcess = status;
+		this.responseMessage = message;
 	}
 
 	public ResponseBlog(Boolean status, String message, T data) {
 		super();
-		this.status = status;
-		this.message = message;
+		this.stateProcess = status;
+		this.responseMessage = message;
 		this.data = data;
 	}
 
-	public Boolean getStatus() {
-		return status;
+	public Boolean getStateProcess() {
+		return stateProcess;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setStateProcess(Boolean status) {
+		this.stateProcess = status;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getResponseMessage() {
+		return responseMessage;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setResponseMessage(String message) {
+		this.responseMessage = message;
 	}
 
 	public T getData() {
@@ -54,12 +54,12 @@ public class ResponseBlog<T> implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(message, status);
+		return Objects.hash(responseMessage, stateProcess);
 	}
 
 	@Override
 	public String toString() {
-		return "RespuestaGenerica [status=" + status + ", message=" + message + ", data=" + data + "]";
+		return "RespuestaGenerica [status=" + stateProcess + ", message=" + responseMessage + ", data=" + data + "]";
 	}
 
 }

@@ -22,7 +22,7 @@ class RolesImplTest {
 	@Test
 	void findByRole() {
 		try {
-			assertTrue(iRolesService.findByRole(defaultRol).getStatus(), "Function findByRole for RolesImpl - FAILED");
+			assertTrue(iRolesService.findByRole(defaultRol).getStateProcess(), "Function findByRole for RolesImpl - FAILED");
 		} catch (SimpleBlogException e) {
 			fail(e.toString());
 		}

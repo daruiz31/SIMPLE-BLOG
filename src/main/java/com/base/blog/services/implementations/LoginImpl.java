@@ -34,8 +34,8 @@ public class LoginImpl implements ILoginService {
 		ResponseBlog<UserDTO> user = iUsersService.findByEmailAndPassword(email, password);
 		
 		// Bad answer
-		if (Boolean.FALSE.equals(user.getStatus())) {
-			return new ResponseBlog<>(false, user.getMessage());
+		if (Boolean.FALSE.equals(user.getStateProcess())) {
+			return new ResponseBlog<>(false, user.getResponseMessage());
 		}
 
 		// Correct answer

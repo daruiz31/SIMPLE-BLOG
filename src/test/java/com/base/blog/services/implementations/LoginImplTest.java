@@ -25,7 +25,7 @@ class LoginImplTest {
 	@Test
 	void login() {
 		try {
-			assertTrue(iLoginService.login(email, password).getStatus(), "Function login for LoginImpl - FAILED");
+			assertTrue(iLoginService.login(email, password).getStateProcess(), "Function login for LoginImpl - FAILED");
 		} catch (SimpleBlogException e) {
 			fail(e.toString());
 		}

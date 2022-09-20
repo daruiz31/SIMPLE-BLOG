@@ -26,7 +26,7 @@ class RegisterImplTest {
 			assertTrue(
 					iRegisterService.createUser(new UserDTO("JUnitTest", "Auto",
 							"_" + String.valueOf(secureRandom.nextInt()) + "@JUnit.test",
-							String.valueOf(secureRandom.nextInt()))).getStatus(),
+							String.valueOf(secureRandom.nextInt()))).getStateProcess(),
 					"Function createUser for RegisterImpl - FAILED");
 		} catch (SimpleBlogException e) {
 			fail(e.toString());
