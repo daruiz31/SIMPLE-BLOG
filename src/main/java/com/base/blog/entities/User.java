@@ -3,7 +3,6 @@ package com.base.blog.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,9 +26,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Nullable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idusers")
+	@Column(name = "idusers", unique = true, nullable = false)
 	private Long idUser;
 
 	@NotBlank
@@ -37,6 +35,7 @@ public class User implements Serializable {
 	@NotBlank
 	private String surname;
 	@NotBlank
+	@Column(unique = true)
 	private String email;
 	@NotBlank
 	private String password;
@@ -44,28 +43,28 @@ public class User implements Serializable {
 	private Integer enabled;
 
 	@NotNull
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idRol")
-	private Rol idRol;
+	private Rol rol;
 
 	public User() {
 		super();
 	}
 
 	public User(@NotBlank String name, @NotBlank String surname, @NotBlank String email, @NotBlank String password,
-			@NotNull Integer enabled, Rol idRol) {
+			@NotNull Integer enabled, Rol rol) {
 		super();
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
 		this.enabled = enabled;
-		this.idRol = idRol;
+		this.rol = rol;
 	}
 	
 	
 	public User(@Nullable Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
-			@NotBlank String password, @NotNull Integer enabled, @NotNull Rol idRol) {
+			@NotBlank String password, @NotNull Integer enabled, @NotNull Rol rol) {
 		super();
 		this.idUser = idUser;
 		this.name = name;
@@ -73,7 +72,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.password = password;
 		this.enabled = enabled;
-		this.idRol = idRol;
+		this.rol = rol;
 	}
 
 	public User(UserDTO user) {
@@ -84,7 +83,7 @@ public class User implements Serializable {
 		this.email = user.getEmail().isBlank() ? this.email : user.getEmail();
 		this.password = user.getPassword().isBlank() ? this.password : user.getPassword();
 		this.enabled = user.getEnabled() != null ? user.getEnabled() : this.enabled;
-		this.idRol = user.getIdRol() != null ? new Rol(user.getIdRol()) : this.idRol;
+		this.rol = user.getRol() != null ? new Rol(user.getRol()) : this.rol;
 	}
 
 	public Long getIdUser() {
@@ -135,17 +134,17 @@ public class User implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public Rol getIdRol() {
-		return idRol;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setIdRol(Rol idRol) {
-		this.idRol = idRol;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, enabled, idRol, idUser, name, password, surname);
+		return Objects.hash(email, enabled, rol, idUser, name, password, surname);
 	}
 
 	@Override
@@ -158,7 +157,7 @@ public class User implements Serializable {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(idRol, other.idRol) && Objects.equals(idUser, other.idUser)
+				&& Objects.equals(rol, other.rol) && Objects.equals(idUser, other.idUser)
 				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
 				&& Objects.equals(surname, other.surname);
 	}
@@ -166,7 +165,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password="
-				+ password + ", enabled=" + enabled + ", idRol=" + idRol + "]";
+				+ password + ", enabled=" + enabled + ", rol=" + rol + "]";
 	}
 
 }

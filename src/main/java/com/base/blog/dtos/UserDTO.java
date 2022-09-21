@@ -3,6 +3,7 @@ package com.base.blog.dtos;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.lang.Nullable;
@@ -26,7 +27,8 @@ public class UserDTO implements Serializable {
 	@Nullable
 	private Integer enabled;
 	@Nullable
-	private RolDTO idRol;
+	@Valid
+	private RolDTO rol;
 
 	public UserDTO() {
 		super();
@@ -52,7 +54,7 @@ public class UserDTO implements Serializable {
 	}
 
 	public UserDTO(@Nullable Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
-			@NotBlank String password, @Nullable Integer enabled, RolDTO idRol) {
+			@NotBlank String password, @Nullable Integer enabled, RolDTO rol) {
 		super();
 		this.idUser = idUser;
 		this.name = name;
@@ -60,7 +62,7 @@ public class UserDTO implements Serializable {
 		this.email = email;
 		this.password = password;
 		this.enabled = enabled;
-		this.idRol = idRol;
+		this.rol = rol;
 	}
 
 	public UserDTO(User user) {
@@ -71,7 +73,7 @@ public class UserDTO implements Serializable {
 		this.email = user.getEmail().isBlank() ? this.email : user.getEmail();
 		this.password = user.getPassword().isBlank() ? this.password : user.getPassword();
 		this.enabled = user.getEnabled() != null ? user.getEnabled() : this.enabled;
-		this.idRol = user.getIdRol() != null ? new RolDTO(user.getIdRol()) : this.idRol;
+		this.rol = user.getRol() != null ? new RolDTO(user.getRol()) : this.rol;
 	}
 
 	public Long getIdUser() {
@@ -122,17 +124,17 @@ public class UserDTO implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public RolDTO getIdRol() {
-		return idRol;
+	public RolDTO getRol() {
+		return rol;
 	}
 
-	public void setIdRol(RolDTO idRol) {
-		this.idRol = idRol;
+	public void setRol(RolDTO idRol) {
+		this.rol = idRol;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, enabled, idRol, idUser, name, password, surname);
+		return Objects.hash(email, enabled, rol, idUser, name, password, surname);
 	}
 
 	@Override
@@ -145,7 +147,7 @@ public class UserDTO implements Serializable {
 			return false;
 		UserDTO other = (UserDTO) obj;
 		return Objects.equals(email, other.email) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(idRol, other.idRol) && Objects.equals(idUser, other.idUser)
+				&& Objects.equals(rol, other.rol) && Objects.equals(idUser, other.idUser)
 				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
 				&& Objects.equals(surname, other.surname);
 	}
@@ -153,7 +155,7 @@ public class UserDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "UserDTO [idUser=" + idUser + ", name=" + name + ", surname=" + surname + ", email=" + email
-				+ ", password=" + password + ", enabled=" + enabled + ", idRol=" + idRol + "]";
+				+ ", password=" + password + ", enabled=" + enabled + ", rol=" + rol + "]";
 	}
 
 }

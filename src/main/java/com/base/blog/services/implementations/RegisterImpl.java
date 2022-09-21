@@ -3,7 +3,6 @@ package com.base.blog.services.implementations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.base.blog.dtos.ResponseBlog;
@@ -28,9 +27,7 @@ public class RegisterImpl implements IRegisterService {
 
 	@Autowired
 	private IRolesService iRolesService;
-
-	@Value("${simple.blog.properties.default.role}")
-	private String defaultRol;
+	
 
 	@Override
 	public ResponseBlog<UserDTO> createUser(UserDTO user) throws SimpleBlogException {
@@ -41,16 +38,15 @@ public class RegisterImpl implements IRegisterService {
 
 		// Enable user
 		user.setEnabled(1);
-
-		// Assign role to user
-		if (Boolean.TRUE.equals(user.getIdRol() == null)) {
-			ResponseBlog<RolDTO> role = iRolesService.findByRole(defaultRol);
-			if (Boolean.FALSE.equals(role.getStateProcess())) {
-				return new ResponseBlog<>(false, role.getResponseMessage());
-			}
-			user.setIdRol(role.getData());
-		}
 		
+		// Assign role to user
+		ResponseBlog<RolDTO> assignRol = iRolesService.searchUserRol(user);
+		if(Boolean.FALSE.equals(assignRol.getStateProcess())) {
+			return new ResponseBlog<>(false, assignRol.getResponseMessage());
+		}
+		user.setRol(assignRol.getData());		
+		
+		// Create user and response 
 		return iUsersService.create(user);
 	}
 

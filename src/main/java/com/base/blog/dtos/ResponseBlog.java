@@ -1,7 +1,6 @@
 package com.base.blog.dtos;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class ResponseBlog<T> implements Serializable {
 
@@ -53,13 +52,9 @@ public class ResponseBlog<T> implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(responseMessage, stateProcess);
-	}
-
-	@Override
 	public String toString() {
-		return "RespuestaGenerica [status=" + stateProcess + ", message=" + responseMessage + ", data=" + data + "]";
+		return "RespuestaGenerica [stateProcess=" + stateProcess + ", responseMessage=" + responseMessage + ", data="
+				+ data + "]";
 	}
 
 }
