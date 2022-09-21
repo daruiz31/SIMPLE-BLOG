@@ -39,14 +39,14 @@ public class ReviewsController {
 			ResponseBlog<ReviewDTO> responseFindById = iReviewsService.findById(idReview);
 			return Boolean.FALSE.equals(responseFindById.getStateProcess())
 					? ResponseEntity.badRequest().body(responseFindById)
-					: ResponseEntity.accepted().body(responseFindById);
+					: ResponseEntity.ok().body(responseFindById);
 		} catch (SimpleBlogException e) {
 			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));
 		}
 	}
 
 	@PostMapping("/save")
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<ResponseBlog<ReviewDTO>> saveReview(@RequestParam @NotNull @Valid Long idUser,
 			@RequestBody @Valid ReviewDTO review) {
 		try {
@@ -66,7 +66,7 @@ public class ReviewsController {
 			ResponseBlog<List<ReviewDTO>> responseFindReviewsByRole = iPublicationService.listReviewsByDefaultRole();
 			return Boolean.FALSE.equals(responseFindReviewsByRole.getStateProcess())
 					? ResponseEntity.badRequest().body(responseFindReviewsByRole)
-					: ResponseEntity.accepted().body(responseFindReviewsByRole);
+					: ResponseEntity.ok().body(responseFindReviewsByRole);
 		} catch (SimpleBlogException e) {
 			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));
 		}
