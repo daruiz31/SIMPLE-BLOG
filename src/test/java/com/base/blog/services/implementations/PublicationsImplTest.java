@@ -35,4 +35,16 @@ class PublicationsImplTest {
 
 	}
 
+	@Test
+	@Tag("PublicationsImpl.listReviewsByDefaultRole")
+	void listReviewsByDefaultRole() {
+		try {
+			assertTrue(publicationsImpl.listReviewsByDefaultRole().getStateProcess(),
+					"Function find reviews by default role for PublicationsImpl - FAILED");
+		} catch (SimpleBlogException e) {
+			fail(e.toString());
+		}
+
+	}
+
 }
