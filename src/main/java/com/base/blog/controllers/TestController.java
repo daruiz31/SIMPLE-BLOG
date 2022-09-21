@@ -17,7 +17,7 @@ public class TestController {
 	@Autowired
 	private ITestService iTestService;
 
-	@GetMapping("/ok")
+	@GetMapping("/")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseBlog<String> test() {
 		return iTestService.test();

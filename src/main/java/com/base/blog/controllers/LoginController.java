@@ -33,7 +33,7 @@ public class LoginController {
 	 * @return {@link ResponseBlog<UserDTO>}
 	 * Generic ResponseBlog response with UserDTO login data
 	 */
-	@GetMapping("/sesion")
+	@GetMapping("/")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<ResponseBlog<UserDTO>> login(@RequestParam @NotBlank @Valid String email,
 			@RequestParam @NotBlank @Valid String password) {

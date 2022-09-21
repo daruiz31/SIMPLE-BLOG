@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,9 +32,9 @@ public class ReviewsController {
 	@Autowired
 	private IPublicationsService iPublicationService;
 
-	@GetMapping("/findById")
+	@GetMapping("/{idReview}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<ResponseBlog<ReviewDTO>> findById(@RequestParam @NotNull @Valid Long idReview) {
+	public ResponseEntity<ResponseBlog<ReviewDTO>> findById(@PathVariable @NotNull @Valid Long idReview) {
 		try {
 			ResponseBlog<ReviewDTO> responseFindById = iReviewsService.findById(idReview);
 			return Boolean.FALSE.equals(responseFindById.getStateProcess())
@@ -45,9 +45,9 @@ public class ReviewsController {
 		}
 	}
 
-	@PostMapping("/save")
+	@PostMapping("/saveByUser/{idUser}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<ResponseBlog<ReviewDTO>> saveReview(@RequestParam @NotNull @Valid Long idUser,
+	public ResponseEntity<ResponseBlog<ReviewDTO>> saveReview(@PathVariable @NotNull @Valid Long idUser,
 			@RequestBody @Valid ReviewDTO review) {
 		try {
 			ResponseBlog<ReviewDTO> responseSaveReview = iPublicationService.createReview(review, idUser);
@@ -59,7 +59,7 @@ public class ReviewsController {
 		}
 	}
 
-	@GetMapping("/findDefault")
+	@GetMapping("/")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<ResponseBlog<List<ReviewDTO>>> listAllByDefaultRole() {
 		try {
