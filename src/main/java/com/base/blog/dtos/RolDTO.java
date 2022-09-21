@@ -1,7 +1,6 @@
 package com.base.blog.dtos;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
@@ -84,24 +83,6 @@ public class RolDTO implements Serializable {
 
 	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(description, enabled, idRol, role);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RolDTO other = (RolDTO) obj;
-		return Objects.equals(description, other.description) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(idRol, other.idRol) && Objects.equals(role, other.role);
 	}
 
 	@Override

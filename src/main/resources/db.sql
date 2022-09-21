@@ -1,4 +1,6 @@
 CREATE DATABASE `simpleblog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `simpleblog`;
+
 CREATE TABLE `roles` (
   `idroles` bigint NOT NULL AUTO_INCREMENT,
   `role` varchar(45) NOT NULL,
@@ -7,6 +9,7 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`idroles`),
   UNIQUE KEY `role_UNIQUE` (`role`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='roles for simple blog users';
+
 CREATE TABLE `users` (
   `idusers` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(45)  NOT NULL,
@@ -20,6 +23,18 @@ CREATE TABLE `users` (
   KEY `user_idrol_fk_idx` (`idrol`),
   CONSTRAINT `user_idrol_fk` FOREIGN KEY (`idrol`) REFERENCES `roles` (`idroles`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='registered users';
+
+CREATE TABLE `reviews` (
+  `idreviews` bigint NOT NULL AUTO_INCREMENT,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `title` varchar(45) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `iduser` bigint NOT NULL,
+  PRIMARY KEY (`idreviews`),
+  KEY `iduser_review_fk_idx` (`iduser`),
+  CONSTRAINT `review_iduser_fk` FOREIGN KEY (`iduser`) REFERENCES `users` (`idusers`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 INSERT INTO `simpleblog`.`roles`
 (`idroles`,

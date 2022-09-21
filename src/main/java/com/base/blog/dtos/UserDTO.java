@@ -1,7 +1,6 @@
 package com.base.blog.dtos;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -74,6 +73,7 @@ public class UserDTO implements Serializable {
 		this.password = user.getPassword().isBlank() ? this.password : user.getPassword();
 		this.enabled = user.getEnabled() != null ? user.getEnabled() : this.enabled;
 		this.rol = user.getRol() != null ? new RolDTO(user.getRol()) : this.rol;
+
 	}
 
 	public Long getIdUser() {
@@ -130,27 +130,7 @@ public class UserDTO implements Serializable {
 
 	public void setRol(RolDTO idRol) {
 		this.rol = idRol;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, enabled, rol, idUser, name, password, surname);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserDTO other = (UserDTO) obj;
-		return Objects.equals(email, other.email) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(rol, other.rol) && Objects.equals(idUser, other.idUser)
-				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
-				&& Objects.equals(surname, other.surname);
-	}
+	}	
 
 	@Override
 	public String toString() {

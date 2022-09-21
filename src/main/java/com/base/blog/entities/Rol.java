@@ -1,17 +1,12 @@
 package com.base.blog.entities;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -35,9 +30,6 @@ public class Rol implements Serializable {
 	private String description;
 	@NotNull
 	private Integer enabled;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rol")
-	private List<User> users;
 
 	public Rol() {
 		super();
@@ -89,32 +81,6 @@ public class Rol implements Serializable {
 
 	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(description, enabled, idRol, role);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rol other = (Rol) obj;
-		return Objects.equals(description, other.description) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(idRol, other.idRol) && Objects.equals(role, other.role);
 	}
 
 	@Override

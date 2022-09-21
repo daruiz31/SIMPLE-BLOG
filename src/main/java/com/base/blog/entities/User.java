@@ -1,7 +1,6 @@
 package com.base.blog.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +42,7 @@ public class User implements Serializable {
 	private Integer enabled;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idRol")
 	private Rol rol;
 
@@ -61,8 +60,7 @@ public class User implements Serializable {
 		this.enabled = enabled;
 		this.rol = rol;
 	}
-	
-	
+
 	public User(@Nullable Long idUser, @NotBlank String name, @NotBlank String surname, @NotBlank String email,
 			@NotBlank String password, @NotNull Integer enabled, @NotNull Rol rol) {
 		super();
@@ -140,26 +138,6 @@ public class User implements Serializable {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, enabled, rol, idUser, name, password, surname);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(enabled, other.enabled)
-				&& Objects.equals(rol, other.rol) && Objects.equals(idUser, other.idUser)
-				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
-				&& Objects.equals(surname, other.surname);
 	}
 
 	@Override

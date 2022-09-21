@@ -33,6 +33,7 @@ public class LoginImpl implements ILoginService {
 		// Consult the database by email and password
 		ResponseBlog<UserDTO> user = iUsersService.findByEmailAndPassword(email, password);
 		
+		LOG.info("RPT USER {}", user);
 		// Bad answer
 		if (Boolean.FALSE.equals(user.getStateProcess())) {
 			return new ResponseBlog<>(false, user.getResponseMessage());
