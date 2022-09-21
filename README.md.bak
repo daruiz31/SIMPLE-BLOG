@@ -13,4 +13,4 @@ Desarrollo backend para un blog sencillo donde podras:
 - _Maria Santana_
 
 ### API DOC
-<a href="http://localhost:8089/swagger-ui.html#/">Swagger UI</a>
+http://localhost:8089/swagger-ui.html#/
