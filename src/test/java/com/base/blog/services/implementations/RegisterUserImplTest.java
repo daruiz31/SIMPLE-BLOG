@@ -4,27 +4,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.security.SecureRandom;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.base.blog.dtos.UserDTO;
 import com.base.blog.exceptions.SimpleBlogException;
-import com.base.blog.services.IRegisterService;
 
 @SpringBootTest
-class RegisterImplTest {
+class RegisterUserImplTest {
 
 	@Autowired
-	private IRegisterService iRegisterService;
+	private RegisterUserImpl registerUserImpl;
 
 	@Test
+	@Tag("IRegisterService.createUser")
 	void createUser() {
 		SecureRandom secureRandom = new SecureRandom();
-
 		try {
 			assertTrue(
-					iRegisterService.createUser(new UserDTO("JUnitTest", "Auto",
+					registerUserImpl.createUser(new UserDTO("JUnitTest", "Auto",
 							"_" + String.valueOf(secureRandom.nextInt()) + "@JUnit.test",
 							String.valueOf(secureRandom.nextInt()))).getStateProcess(),
 					"Function createUser for RegisterImpl - FAILED");

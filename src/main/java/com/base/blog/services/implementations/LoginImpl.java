@@ -28,12 +28,12 @@ public class LoginImpl implements ILoginService {
 		LOG.info("LOGGGING IN FOR USER ...");
 		
 		// Hash password
-		password = iPasswordService.encodeSHA1(password);
+		iPasswordService = new SHA1Impl();
+		password = iPasswordService.createHash(password);
 
 		// Consult the database by email and password
 		ResponseBlog<UserDTO> user = iUsersService.findByEmailAndPassword(email, password);
 		
-		LOG.info("RPT USER {}", user);
 		// Bad answer
 		if (Boolean.FALSE.equals(user.getStateProcess())) {
 			return new ResponseBlog<>(false, user.getResponseMessage());

@@ -2,6 +2,6 @@ package com.base.blog.services;
 
 public interface IPasswordService {
 	
-	String encodeSHA1(String text);
+	String createHash(String text);
 
 }

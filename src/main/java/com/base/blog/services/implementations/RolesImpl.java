@@ -3,7 +3,6 @@ package com.base.blog.services.implementations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.base.blog.dtos.ResponseBlog;
@@ -21,9 +20,6 @@ public class RolesImpl implements IRolesService {
 
 	@Autowired
 	private IRolesRepository iRolesRepository;
-
-	@Value("${simple.blog.properties.default.role}")
-	private String defaultRol;
 
 	@Override
 	public ResponseBlog<RolDTO> findByRole(String role) throws SimpleBlogException {
@@ -49,20 +45,29 @@ public class RolesImpl implements IRolesService {
 		}
 	}
 
+	/**
+	 * Role of corresponding to user.rol.idRol or defaultRol respectively
+	 * @Param user
+	 * {@link UserDTO} - use of idRol from RolDTO
+	 * @Param defaultRol
+	 * String - Default role is used if idRol is not found
+	 * @Return {@link ResponseBlog<RolDTO>} Role corresponding to the expected parameters
+	 */
 	@Override
-	public ResponseBlog<RolDTO> searchUserRol(UserDTO user) throws SimpleBlogException {		
+	public ResponseBlog<RolDTO> setUserRol(UserDTO user, String defaultRol) throws SimpleBlogException {
 		ResponseBlog<RolDTO> role;
 		if (Boolean.TRUE.equals(user.getRol() != null)) {
 			role = findById(user.getRol().getIdRol());
-			if (Boolean.FALSE.equals(role.getStateProcess())) {
-				return new ResponseBlog<>(false, role.getResponseMessage());
-			}
 		} else {
 			role = findByRole(defaultRol);
-			if (Boolean.FALSE.equals(role.getStateProcess())) {
-				return new ResponseBlog<>(false, role.getResponseMessage());
-			}
+
 		}
+		
+		// Validate process findByRole
+		if (Boolean.FALSE.equals(role.getStateProcess())) {
+			return new ResponseBlog<>(false, role.getResponseMessage());
+		}
+		
 		return role;
 	}
 

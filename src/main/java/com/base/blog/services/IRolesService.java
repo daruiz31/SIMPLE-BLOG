@@ -11,6 +11,6 @@ public interface IRolesService {
 	
 	ResponseBlog<RolDTO> findById(Long idRole) throws SimpleBlogException;
 	
-	ResponseBlog<RolDTO> searchUserRol(UserDTO user) throws SimpleBlogException;
+	ResponseBlog<RolDTO> setUserRol(UserDTO user, String defaultRol) throws SimpleBlogException;
 
 }

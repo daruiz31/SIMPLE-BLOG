@@ -30,7 +30,7 @@ public class LoginController {
 	 * String - user mail 
 	 * @param password
 	 * String - user password
-	 * @return ResponseBlog<UserDTO>
+	 * @return {@link ResponseBlog<UserDTO>}
 	 * Generic ResponseBlog response with UserDTO login data
 	 */
 	@GetMapping("/sesion")
