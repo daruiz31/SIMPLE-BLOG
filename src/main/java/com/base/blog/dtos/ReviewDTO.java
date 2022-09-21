@@ -31,6 +31,19 @@ public class ReviewDTO implements Serializable {
 		super();
 	}
 
+	public ReviewDTO(@NotBlank String title, @NotBlank String description) {
+		super();
+		this.title = title;
+		this.description = description;
+	}
+
+	public ReviewDTO(Date dateCreated, @NotBlank String title, @NotBlank String description) {
+		super();
+		this.dateCreated = dateCreated;
+		this.title = title;
+		this.description = description;
+	}
+
 	public ReviewDTO(@NotNull Date dateCreated, @NotBlank String title, @NotBlank String description,
 			@NotNull UserDTO user) {
 		super();

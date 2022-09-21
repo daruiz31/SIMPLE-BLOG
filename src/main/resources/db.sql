@@ -52,4 +52,28 @@ INSERT INTO `simpleblog`.`roles`
 VALUES
 ('2', 'ADMINISTRATOR', 'application administrator', '1');
 
+INSERT INTO `simpleblog`.`roles`
+(`idroles`,
+`role`,
+`description`,
+`enabled`)
+VALUES
+('3', 'TEST', 'simple role for test', '1');
+
+INSERT INTO `simpleblog`.`users`
+(`idusers`,
+`name`,
+`surname`,
+`email`,
+`password`,
+`enabled`,
+`idrol`)
+VALUES
+(1,
+'Pruebas','Automáticas',
+'PruebasJUnit@test.com',
+'123456',
+1,
+3);
+
 

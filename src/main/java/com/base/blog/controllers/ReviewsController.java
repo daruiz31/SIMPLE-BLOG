@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.base.blog.dtos.ResponseBlog;
 import com.base.blog.dtos.ReviewDTO;
 import com.base.blog.exceptions.SimpleBlogException;
-import com.base.blog.services.IPublicationService;
+import com.base.blog.services.IPublicationsService;
 import com.base.blog.services.IReviewsService;
 
 @RestController
@@ -28,7 +28,7 @@ public class ReviewsController {
 	private IReviewsService iReviewsService;
 
 	@Autowired
-	private IPublicationService iPublicationService;
+	private IPublicationsService iPublicationService;
 
 	@GetMapping("/findById")
 	@ResponseStatus(HttpStatus.OK)

@@ -11,14 +11,14 @@ import com.base.blog.dtos.ResponseBlog;
 import com.base.blog.dtos.ReviewDTO;
 import com.base.blog.dtos.UserDTO;
 import com.base.blog.exceptions.SimpleBlogException;
-import com.base.blog.services.IPublicationService;
+import com.base.blog.services.IPublicationsService;
 import com.base.blog.services.IReviewsService;
 import com.base.blog.services.IUsersService;
 
 @Service
-public class PublicationImpl implements IPublicationService {
+public class PublicationsImpl implements IPublicationsService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(PublicationImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(PublicationsImpl.class);
 
 	@Autowired
 	private IUsersService iUsersService;

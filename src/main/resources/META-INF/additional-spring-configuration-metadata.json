@@ -13,5 +13,10 @@
     "name": "simple.blog.properties.default.role",
     "type": "java.lang.String",
     "description": "A description for 'simple.blog.properties.default.role'"
+  },
+  {
+    "name": "test.impl.publications.user.id",
+    "type": "java.lang.String",
+    "description": "A description for 'test.impl.publications.user.id'"
   }
 ]}
