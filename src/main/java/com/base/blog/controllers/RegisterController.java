@@ -26,16 +26,14 @@ public class RegisterController {
 
 	/**
 	 * Register user with information of the UserDTO object
-	 * @param user Object
-	 * UserDTO - Required registration information for user
-	 * @return ResponseBlog<UserDTO>
-	 * Generic ResponseBlog response with UserDTO saved register
-	 * @throws SimpleBlogException
+	 * 
+	 * @param user Object UserDTO - Required registration information for user
+	 * @return ResponseBlog<UserDTO> Generic ResponseBlog response with UserDTO
+	 *         saved register
 	 */
 	@PostMapping("/user")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<ResponseBlog<UserDTO>> createUser(@RequestBody @NotNull @Valid UserDTO user)
-			throws SimpleBlogException {
+	public ResponseEntity<ResponseBlog<UserDTO>> createUser(@RequestBody @NotNull @Valid UserDTO user) {
 		try {
 			ResponseBlog<UserDTO> response = iRegisterService.createUser(user);
 			return Boolean.FALSE.equals(response.getStateProcess()) ? ResponseEntity.badRequest().body(response)
