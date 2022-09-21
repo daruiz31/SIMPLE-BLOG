@@ -72,7 +72,7 @@ VALUES
 (1,
 'Pruebas','Automáticas',
 'PruebasJUnit@test.com',
-'123456',
+'7c4a8d09ca3762af61e59520943dc26494f8941b',
 1,
 3);
 
