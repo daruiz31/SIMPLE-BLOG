@@ -38,9 +38,9 @@ public class LoginController {
 	public ResponseEntity<ResponseBlog<UserDTO>> login(@RequestParam @NotBlank @Valid String email,
 			@RequestParam @NotBlank @Valid String password) {
 		try {
-			ResponseBlog<UserDTO> response = iLoginService.login(email, password);
-			return Boolean.FALSE.equals(response.getStateProcess()) ? ResponseEntity.badRequest().body(response)
-					: ResponseEntity.ok().body(response);
+			ResponseBlog<UserDTO> responseLogin = iLoginService.login(email, password);
+			return Boolean.FALSE.equals(responseLogin.getStateProcess()) ? ResponseEntity.badRequest().body(responseLogin)
+					: ResponseEntity.ok().body(responseLogin);
 		} catch (SimpleBlogException e) {
 			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));
 		}

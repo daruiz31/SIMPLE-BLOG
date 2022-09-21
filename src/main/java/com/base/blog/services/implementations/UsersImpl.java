@@ -62,4 +62,16 @@ public class UsersImpl implements IUsersService {
 		}
 	}
 
+	@Override
+	public ResponseBlog<UserDTO> findById(Long id) throws SimpleBlogException {
+		try {
+			return new ResponseBlog<>(true, "Found user", new UserDTO(
+					iUsersRepository.findById(id).orElseThrow(() -> new NotFoundException("ERROR-USER-FIND-BY-ID"))));
+		} catch (Exception e) {
+			String message = "Error searching user by id {" + id + "} : " + e.getMessage();
+			LOG.error(message);
+			return new ResponseBlog<>(false, message);
+		}
+	}
+
 }

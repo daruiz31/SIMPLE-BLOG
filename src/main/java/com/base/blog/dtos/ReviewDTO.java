@@ -17,14 +17,14 @@ public class ReviewDTO implements Serializable {
 	@Nullable
 	private Long idReviews;
 
-	@NotNull
+	@Nullable
 	private Date dateCreated;
 
 	@NotBlank
 	private String title;
 	@NotBlank
 	private String description;
-	@NotNull
+	@Nullable
 	private UserDTO user;
 
 	public ReviewDTO() {

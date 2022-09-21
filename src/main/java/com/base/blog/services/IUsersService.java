@@ -11,5 +11,7 @@ public interface IUsersService {
 	ResponseBlog<UserDTO> findByEmail(String email) throws SimpleBlogException;
 
 	ResponseBlog<UserDTO> findByEmailAndPassword(String email, String password) throws SimpleBlogException;
+	
+	ResponseBlog<UserDTO> findById(Long id) throws SimpleBlogException;
 
 }
