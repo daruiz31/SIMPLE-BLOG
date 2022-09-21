@@ -1,5 +1,7 @@
 package com.base.blog.services.implementations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -44,6 +46,30 @@ public class ReviewsImpl implements IReviewsService {
 			return new ResponseBlog<>(true, "Review saved", new ReviewDTO(savedReview));
 		} catch (Exception e) {
 			String message = "Error save new review {" + review + "} : " + e.getMessage();
+			LOG.error(message);
+			return new ResponseBlog<>(false, message);
+		}
+	}
+
+	@Override
+	public ResponseBlog<List<ReviewDTO>> listAllByRole(String role) throws SimpleBlogException {
+		try {
+
+			List<Review> reviews = iReviewsRepository.findAllByRole(role)
+					.orElseThrow(() -> new NotFoundException("ERROR-REVIEW-FIND-BY-ROLE"));
+
+			List<ReviewDTO> responseReviews = new ArrayList<>();
+			for (Review review : reviews) {
+				responseReviews.add(new ReviewDTO(review));
+			}
+
+			if (Boolean.TRUE.equals(responseReviews.isEmpty())) {
+				return new ResponseBlog<>(false, "Not found reviews by role " + role);
+			}
+
+			return new ResponseBlog<>(true, "Found reviews", responseReviews);
+		} catch (Exception e) {
+			String message = "Error find all reviews by role {" + role + "} : " + e.getMessage();
 			LOG.error(message);
 			return new ResponseBlog<>(false, message);
 		}

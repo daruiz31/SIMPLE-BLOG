@@ -1,5 +1,7 @@
 package com.base.blog.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -52,6 +54,19 @@ public class ReviewsController {
 			return Boolean.FALSE.equals(responseSaveReview.getStateProcess())
 					? ResponseEntity.badRequest().body(responseSaveReview)
 					: ResponseEntity.accepted().body(responseSaveReview);
+		} catch (SimpleBlogException e) {
+			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));
+		}
+	}
+
+	@GetMapping("/findDefault")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<ResponseBlog<List<ReviewDTO>>> listAllByDefaultRole() {
+		try {
+			ResponseBlog<List<ReviewDTO>> responseFindReviewsByRole = iPublicationService.listReviewsByDefaultRole();
+			return Boolean.FALSE.equals(responseFindReviewsByRole.getStateProcess())
+					? ResponseEntity.badRequest().body(responseFindReviewsByRole)
+					: ResponseEntity.accepted().body(responseFindReviewsByRole);
 		} catch (SimpleBlogException e) {
 			return ResponseEntity.internalServerError().body(new ResponseBlog<>(false, e.toString()));
 		}
