@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.base.blog.services.IRegisterService;
 
 @RestController
 @RequestMapping(path = "/simpleBlog/v1/register")
+@CrossOrigin("*")
 public class RegisterController {
 
 	@Autowired
