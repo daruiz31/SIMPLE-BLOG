@@ -4,9 +4,9 @@ server.port= 8089
 
 # database basic properties
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.datasource.url=jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_4e4dacad475ccc8
-spring.datasource.username=bed30ae0930c11
-spring.datasource.password=ac8f1107
+spring.datasource.url=jdbc:mysql://localhost:3306/simpleblog
+spring.datasource.username=root
+spring.datasource.password=123456
 
 # print transactions to database
 spring.jpa.show-sql = true
