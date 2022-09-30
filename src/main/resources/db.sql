@@ -28,7 +28,7 @@ CREATE TABLE `reviews` (
   `idreviews` bigint NOT NULL AUTO_INCREMENT,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `title` varchar(45) NOT NULL,
-  `description` varchar(500) NOT NULL,
+  `description` varchar(5000) NOT NULL,
   `iduser` bigint NOT NULL,
   PRIMARY KEY (`idreviews`),
   KEY `iduser_review_fk_idx` (`iduser`),
