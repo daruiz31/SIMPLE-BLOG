@@ -9,5 +9,4 @@ Desarrollo backend para un blog sencillo donde podras:
 - _Diego Ruiz_
 - _Alexis Lenis_
 - _Jeyson Diaz_
-- _Cesar Palomino_
 - _Maria Santana_
